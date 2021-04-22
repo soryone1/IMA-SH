@@ -5,8 +5,9 @@
   * 
  */
 
-#define lightPin 0                        // Connect to MOSFET Gate
+#define lightPin 1                        // Connect to MOSFET Gate
 #define sensorPin 4                       // Read the touch sense value
+#define ledPin 3                          // led indicators
 
 bool sensorValue;
 int state = 0;                             // define the 3 different brightness
@@ -18,10 +19,13 @@ const int debounceDelay = 100;                   // how fast you want the press 
 void setup() {
   pinMode(lightPin, OUTPUT);
   pinMode(sensorPin, INPUT);
+  pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-
+  
+  digitalWrite(ledPin, 1);              // turn on the led to indicate its on
+  
   sensorValue = digitalRead(sensorPin);    // get the result of the input: 0/1
 
   if (sensorValue != lastButtonState) {
